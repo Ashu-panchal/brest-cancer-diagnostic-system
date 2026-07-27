@@ -7,7 +7,7 @@ import joblib
 model = tf.keras.models.load_model("breast_cancer_model.h5")
 scaler = joblib.load("breast_cancer_scaler.pkl")
 
-features = [
+features = [ 
     "Mean Radius","Mean Texture","Mean Perimeter","Mean Area","Mean Smoothness",
     "Mean Compactness","Mean Concavity","Mean Concave Points","Mean Symmetry","Mean Fractal Dimension",
     "Radius Error","Texture Error","Perimeter Error","Area Error","Smoothness Error",
