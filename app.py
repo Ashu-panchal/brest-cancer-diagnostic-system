@@ -2,6 +2,7 @@ import gradio as gr
 import numpy as np
 import tensorflow as tf
 import joblib
+import os
 
 # Load model and scaler
 model = tf.keras.models.load_model("breast_cancer_model.h5")
@@ -62,4 +63,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Breast Cancer Prediction") as demo
         outputs=output
     )
 
-demo.launch()
+port = int(os.environ.get("PORT", 7860))
+
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=port
+)
