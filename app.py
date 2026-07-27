@@ -43,7 +43,7 @@ def predict(*inputs):
 ### Confidence: **{confidence:.2f}%**
 """
 
-with gr.Blocks(theme=gr.themes.Soft(), title="Breast Cancer Prediction") as demo:
+with gr.Blocks(title="Breast Cancer Prediction") as demo:
 
     gr.Markdown(
         """
