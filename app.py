@@ -5,8 +5,15 @@ import joblib
 import os
 
 # Load model and scaler
-model = tf.keras.models.load_model("breast_cancer_model.h5")
-scaler = joblib.load("breast_cancer_scaler.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model = tf.keras.models.load_model(
+    os.path.join(BASE_DIR, "breast_cancer_model.h5")
+)
+
+scaler = joblib.load(
+    os.path.join(BASE_DIR, "breast_cancer_scaler.pkl")
+)
 
 features = [ 
     "Mean Radius","Mean Texture","Mean Perimeter","Mean Area","Mean Smoothness",
