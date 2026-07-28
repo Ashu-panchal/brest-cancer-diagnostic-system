@@ -43,33 +43,54 @@ def predict(*inputs):
 ### Confidence: **{confidence:.2f}%**
 """
 
-with gr.Blocks(title="Breast Cancer Prediction") as demo:
+css = """
+.input-scroll{
+    display:flex;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:15px;
+    padding:10px;
+}
 
-    gr.Markdown(
-        """
+.input-scroll > *{
+    min-width:220px;
+    flex-shrink:0;
+}
+"""
+
+with gr.Blocks(css=css, title="Breast Cancer Prediction") as demo:
+
+    gr.Markdown("""
 # 🩺 Breast Cancer Prediction System
 ### Deep Learning + TensorFlow
-"""
-    )
+""")
 
     with gr.Row():
-        with gr.Column():
-            inputs = [
-                gr.Number(label=f, value=0)
-                for f in features
-            ]
 
-            btn = gr.Button("🔍 Predict", variant="primary")
+        with gr.Column(scale=4):
 
-        with gr.Column():
-            output = gr.Markdown()
+            with gr.Row(elem_classes="input-scroll"):
+
+                inputs = [
+                    gr.Number(label=f, value=0)
+                    for f in features
+                ]
+
+            btn = gr.Button(
+                "🔍 Predict",
+                variant="primary"
+            )
+
+        with gr.Column(scale=2):
+
+            output = gr.Markdown("## Prediction")
 
     btn.click(
         predict,
         inputs=inputs,
         outputs=output
     )
-
+    
 port = int(os.environ.get("PORT", 7860))
 
 demo.launch(
